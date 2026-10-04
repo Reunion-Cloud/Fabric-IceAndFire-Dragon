@@ -1,0 +1,21 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.iafenvoy.iceandfire.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "ChickenMixin",
+    "LivingEntityAccessor",
+    "LivingEntityMixin",
+    "MobMixin",
+    "WorldGenRegionMixin"
+  ],
+  "client": [
+    "LevelRendererMixin",
+    "PanoramaRendererMixin",
+    "TitleScreenMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

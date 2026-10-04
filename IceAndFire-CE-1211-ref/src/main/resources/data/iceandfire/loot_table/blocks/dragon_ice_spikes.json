@@ -1,0 +1,38 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:any_of",
+                  "terms": [
+                    {
+                      "condition": "minecraft:match_tool",
+                      "predicate": {
+                        "components": {
+                          "minecraft:enchantments": {
+                            "levels": {
+                              "minecraft:silk_touch": 1
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              ],
+              "name": "iceandfire:dragon_ice_spikes"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
