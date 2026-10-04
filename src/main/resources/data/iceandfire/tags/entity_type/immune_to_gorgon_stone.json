@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:ender_dragon",
+    "minecraft:wither",
+    {
+      "id": "#c:bosses",
+      "required": false
+    },
+    "minecraft:warden",
+    "iceandfire:gorgon",
+    "iceandfire:stone_statue"
+  ]
+}

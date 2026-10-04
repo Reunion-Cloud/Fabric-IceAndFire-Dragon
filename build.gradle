@@ -1,0 +1,99 @@
+plugins {
+    id 'net.fabricmc.fabric-loom' version '1.18-SNAPSHOT'
+    id 'java-library'
+    id 'maven-publish'
+    id 'idea'
+}
+
+compileJava {
+    options.compilerArgs.addAll([
+            '-Xmaxerrs', '10000',  // up to 10000 errors
+    ])
+}
+
+version = "${mod_version}+${minecraft_version}"
+group = mod_group_id
+
+base {
+    archivesName = mod_id
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(25)
+
+loom {
+    accessWidenerPath = file('src/main/resources/iceandfire.accesswidener')
+}
+
+def modVersion = project.version.toString()
+
+processResources {
+    inputs.property "version", modVersion
+    filesMatching("fabric.mod.json") {
+        expand "version": modVersion
+    }
+}
+
+sourceSets.main.resources {
+    srcDir('src/generated/resources')
+    exclude("**/*.bbmodel")
+    exclude("src/generated/**/.cache")
+}
+
+sourceSets.main.java {
+    // No 26.3 Fabric release is available for these optional integrations.
+    exclude 'com/iafenvoy/iceandfire/compat/ponder/**'
+    exclude 'com/iafenvoy/iceandfire/compat/emi/**'
+    exclude 'com/iafenvoy/iceandfire/compat/ProjectEDragonForgeMapper.java'
+    exclude 'com/iafenvoy/iceandfire/compat/IceAndFireArsNouveauCompat.java'
+    exclude 'com/iafenvoy/iceandfire/compat/jei/**'
+    exclude 'com/iafenvoy/iceandfire/compat/jade/**'
+    exclude 'com/iafenvoy/iceandfire/compat/curios/**'
+}
+
+repositories {
+    mavenLocal()
+    maven { url = "https://maven.terraformersmc.com/" }
+    maven { url = 'https://jitpack.io' }
+    maven { url = 'https://maven.nucleoid.xyz/' }
+    maven { url = "https://maven.blamejared.com/" }
+    maven { url = "https://modmaven.dev" }
+    maven { url = "https://maven.createmod.net" }
+    maven { url = "https://api.modrinth.com/maven" }
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+
+    implementation "com.iafenvoy.uranus:uranus:3.0-alpha.1+26.3"
+    implementation "com.iafenvoy:jupiter:2.4.3-26.3-universal"
+
+    // Mod Menu API only (IceAndFireModMenu); optional at runtime
+    compileOnly "com.terraformersmc:modmenu:${project.modmenu_version}"
+
+    // integration lib replaced by com.iafenvoy.iceandfire.platform.IntegrationShim on Fabric
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+java {
+    withSourcesJar()
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+}
+
+idea {
+    module {
+        downloadSources = true
+        downloadJavadoc = true
+    }
+}

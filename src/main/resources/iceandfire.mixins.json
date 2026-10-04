@@ -1,0 +1,29 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.iafenvoy.iceandfire.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "BlockPropertiesMixin",
+    "ChickenMixin",
+    "EntityIdAccessor",
+    "ItemPropertiesMixin",
+    "LevelMixin",
+    "LivingEntityAccessor",
+    "LivingEntityMixin",
+    "MobMixin",
+    "ServerLevelMultipartAccessor",
+    "ServerExplosionMixin",
+    "WorldGenRegionMixin"
+  ],
+  "client": [
+    "client.CameraMixin",
+    "client.EntityHitboxDebugRendererMixin",
+    "client.EntityRenderDispatcherMixin",
+    "PanoramaRendererMixin",
+    "TitleScreenMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

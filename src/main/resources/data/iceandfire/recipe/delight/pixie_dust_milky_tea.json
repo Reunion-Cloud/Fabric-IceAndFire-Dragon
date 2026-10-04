@@ -1,0 +1,25 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "farmersdelight"
+      ]
+    }
+  ],
+  "type": "farmersdelight:cooking",
+  "recipe_book_tab": "drinks",
+  "ingredients": [
+    "iceandfire:pixie_dust",
+    "iceandfire:pixie_dust",
+    "iceandfire:pixie_dust",
+    "#c:milks"
+  ],
+  "result": {
+    "id": "iceandfire:pixie_dust_milky_tea"
+  },
+  "container": {
+    "id": "minecraft:glass_bottle"
+  },
+  "cookingtime": 200
+}
